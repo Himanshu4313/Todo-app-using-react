@@ -1,0 +1,43 @@
+.todo-container{
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 14px;
+    background-color: rgba(7, 7, 84, 0.854);
+    color: #ffffff;
+    width: 20vw;
+    border-radius: 8px;
+}
+#check{
+    width: 22px;
+    margin-right: 10px;
+}
+#checkbox{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+#todo-text-box{
+    font-size: 25px;
+}
+#editingbtn button{
+    padding: 7px 74px;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 10px auto;
+}
+#deletebtn button{
+    padding: 7px 74px;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 10px auto;
+}
+@media only screen and (max-width:600px){
+    .todo-container{
+        width: 50vw;
+    }
+}

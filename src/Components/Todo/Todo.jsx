@@ -1,31 +1,50 @@
 import { useState } from "react";
-
+import './Todo.css';
 //Todo Component
-const Todo = ({todoData , isfinished ,  changeFinished , onDelete , onEdit}) =>{
-    const [finished , setFinished] = useState(isfinished);
-    const [isEditing , setIsEditing] = useState(false);
-    const [newTodoList , SetNewTodoList] = useState(todoData);
+const Todo = ({ todoData, isfinished, changeFinished, onDelete, onEdit }) => {
+    const [finished, setFinished] = useState(isfinished);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newTodoList, SetNewTodoList] = useState(todoData);
     return (
         <>
-           <div>
-               <input type="checkbox" 
-               checked ={finished}
-               onChange={(e) => {
-               setFinished((e.target.checked))
-               changeFinished((e.target.checked));
-               }}/>
+            <div className="todo-container">
+                <div id="checkbox">
+                    <input type="checkbox"
+                        checked={finished}
+                        onChange={(e) => {
+                            setFinished((e.target.checked))
+                            changeFinished((e.target.checked));
+                        }} 
+                        id="check"
+                        />
 
-                {(isEditing) ? <input type="text" 
-                        value={newTodoList} 
+                        
+                <div id="todo-text-box">
+                    {(isEditing) ? <input type="text"
+                        value={newTodoList}
                         onChange={(e) => SetNewTodoList((e.target.value))}
-                 /> : todoData}
+                    /> : todoData}
 
-               <button onClick={() => {
-                    setIsEditing(!isEditing);
-                    onEdit(newTodoList);
-               }}> {(!isEditing) ? 'Edit' : 'Save'}</button>
-               <button onClick={onDelete}> Delete </button>
-           </div>
+
+                </div>
+
+                </div>
+
+
+                <div id="editingbtn">
+
+                    <button onClick={() => {
+                        setIsEditing(!isEditing);
+                        onEdit(newTodoList);
+                    }}> {(!isEditing) ? 'Edit' : 'Save'}</button>
+
+                </div>
+                <div id="deletebtn">
+                    <button onClick={onDelete}> Delete </button>
+                </div>
+
+
+            </div>
         </>
     );
 }

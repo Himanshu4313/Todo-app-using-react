@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Todo from "../Todo/Todo";
 import TodoContext from "../../Contextapi/TodoContext";
 import DispatchContextapi from "../../Contextapi/DispatchContextapi";
+import './TodoList.css';
 //todoList Component
 const TodoList = () => {
   const { list } = useContext(TodoContext);
@@ -22,6 +23,7 @@ const TodoList = () => {
 
   return (
     <>
+    <div className="todo-list-container">
       {
         list.length > 0 &&
         list.map((todo) =>
@@ -37,6 +39,8 @@ const TodoList = () => {
             onEdit={(EditText) => { onEdit(todo, EditText) }}
           />)
       }
+    </div>
+      
     </>
   );
 }
