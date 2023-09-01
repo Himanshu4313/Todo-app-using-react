@@ -38,6 +38,11 @@
 }
 @media only screen and (max-width:600px){
     .todo-container{
-        width: 50vw;
+        width: 60vw;
+        padding: 15px;
+    }
+    #check{
+        width: 44px;
+        margin-right: 10px;
     }
 }
