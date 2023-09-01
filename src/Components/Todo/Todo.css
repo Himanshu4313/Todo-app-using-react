@@ -38,7 +38,7 @@
 }
 @media only screen and (max-width:600px){
     .todo-container{
-        width: 60vw;
+        width: 75vw;
         padding: 15px;
     }
     #check{
