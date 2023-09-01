@@ -1,0 +1,29 @@
+.Heading{
+    color: #ffffff;
+    margin-top: 15px;
+    margin-bottom: 25px;
+   text-align: center;
+}
+.add-todo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#Addinputbox{
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 2px solid purple;
+    width: 24vw;
+    margin-right: 15px;
+    font-size: 17px;
+}
+.add-todo-container button{
+    padding: 10px 37px;
+    border-radius: 8px;
+    border: 2px solid purple;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 17px;
+    background-color: #ec20b7ba;
+    color: #ffffff;
+}
