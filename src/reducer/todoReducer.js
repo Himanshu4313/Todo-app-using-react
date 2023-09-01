@@ -34,6 +34,8 @@ const TodoReducer = (state , action) => {
             return t;
       });
      return updatedCurrentList;
+    }else{
+       console.error('Unknown action!' + action.type);
     }
          
 }
