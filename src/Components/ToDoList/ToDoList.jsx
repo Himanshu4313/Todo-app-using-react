@@ -1,56 +1,42 @@
 import { useContext } from "react";
 import Todo from "../Todo/Todo";
 import TodoContext from "../../Contextapi/TodoContext";
+import DispatchContextapi from "../../Contextapi/DispatchContextapi";
 //todoList Component
 const TodoList = () => {
-  const {todoList , setTodoList}= useContext(TodoContext);
-
- const onFinished = (isfinished , todo) => {
-  (isfinished) => {
-    const updatedCurrentList = todoList.map((t) => {
-          if(t.id == todo.id){
-              todo.isFinished = isfinished;
-          }
-          return t;
-    });
-   setTodoList(updatedCurrentList);
-}
- }
+  const { list } = useContext(TodoContext);
+  const { dispatch } = useContext(DispatchContextapi);
+  const onFinished = (isfinished, todo) => {
+    dispatch({ type: 'isFinished', payload: { isFinished: isfinished, todo: todo } });
+  }
 
  const onDelete = (todo) => {
-             const updateTodoList = todoList.filter((t) => t.id  != todo.id );
-             setTodoList(updateTodoList);
- }
+    dispatch({ type: 'delete_todo', payload: { todo: todo } })
+  }
 
-const onEdit = (todo , EditText) => {
+  const onEdit = (todo, EditText) => {
 
-      const updatedCurrentList = todoList.map((t) => {
-        if(t.id == todo.id){
-            todo.todoData = EditText;
-        }
-        return t;
-               });
-    setTodoList(updatedCurrentList);
+    dispatch({ type: 'edit_todo', payload: { todo: todo, editText: EditText } });
 
-}
+  }
 
   return (
     <>
-         {
-          todoList.length > 0 && 
-          todoList.map((todo) => 
-               <Todo 
-                  key={todo.id}
-                   todoData={todo.todoData } 
-                    isfinished={todo.isFinished}
-                    //onFinished Function
-                        changeFinished = {(isfinished) => { onFinished(isfinished , todo)} }
-                    //onDelete function
-                    onDelete = {() => {onDelete(todo)}}
-                    //On Editing function 
-                        onEdit = { (EditText) => {onEdit(todo, EditText)} }
-                    />) 
-         }
+      {
+        list.length > 0 &&
+        list.map((todo) =>
+          <Todo
+            key={todo.id}
+            todoData={todo.todoData}
+            isfinished={todo.isFinished}
+            //onFinished Function
+            changeFinished={(isfinished) => { onFinished(isfinished, todo) }}
+            //onDelete function
+            onDelete={() => { onDelete(todo) }}
+            //On Editing function 
+            onEdit={(EditText) => { onEdit(todo, EditText) }}
+          />)
+      }
     </>
   );
 }

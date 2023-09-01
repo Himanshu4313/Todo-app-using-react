@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import TodoContext from "../../Contextapi/TodoContext";
+import DispatchContextapi from "../../Contextapi/DispatchContextapi";
 
 //Add todo component
 const AddTodo = () => {
- const {todoList , setTodoList} =  useContext(TodoContext);
   const [inputText , setInputText] = useState('');
+  //WE use dispatch from dispatch contextapi and this dispatch context api store only dispatch method.
+  const {dispatch} = useContext(DispatchContextapi);
   return (
     <>
          <div>
@@ -14,16 +15,7 @@ const AddTodo = () => {
              onChange={(e) => setInputText(e.target.value)}
              />
             <button onClick={() =>{
-               setTodoList(
-                  [ 
-                        ...todoList , 
-                        {
-                          id :todoList.length+1 ,
-                          todoData: inputText , 
-                          isFinished : false
-                        } 
-                    ]
-               )
+               dispatch({type : 'add_todo', payload : {todoText:inputText}});
                setInputText('');
             }
                }> Add </button>
