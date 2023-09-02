@@ -1,46 +1,47 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import Todo from "../Todo/Todo";
-import TodoContext from "../../Contextapi/TodoContext";
-import DispatchContextapi from "../../Contextapi/DispatchContextapi";
 import './TodoList.css';
 //todoList Component
-const TodoList = () => {
-  const { list } = useContext(TodoContext);
-  const { dispatch } = useContext(DispatchContextapi);
+const TodoList = ({ editTodo, deleteTodo, todoFinished }) => {
+
+  // This is way to invoke dispatch methods from store.js file. 
+  // const dispatch = useDispatch();
+  // This is way to invoke todo list from store.js file.
+  const list = useSelector((state) => state.todo);
+
   const onFinished = (isfinished, todo) => {
-    dispatch({ type: 'isFinished', payload: { isFinished: isfinished, todo: todo } });
+    todoFinished(isfinished, todo);
   }
 
- const onDelete = (todo) => {
-    dispatch({ type: 'delete_todo', payload: { todo: todo } })
+  const onDelete = (todo) => {
+    deleteTodo(todo);
   }
 
   const onEdit = (todo, EditText) => {
-
-    dispatch({ type: 'edit_todo', payload: { todo: todo, editText: EditText } });
+    editTodo(todo, EditText);
 
   }
 
   return (
     <>
-    <div className="todo-list-container">
-      {
-        list.length > 0 &&
-        list.map((todo) =>
-          <Todo
-            key={todo.id}
-            todoData={todo.todoData}
-            isfinished={todo.isFinished}
-            //onFinished Function
-            changeFinished={(isfinished) => { onFinished(isfinished, todo) }}
-            //onDelete function
-            onDelete={() => { onDelete(todo) }}
-            //On Editing function 
-            onEdit={(EditText) => { onEdit(todo, EditText) }}
-          />)
-      }
-    </div>
-      
+      <div className="todo-list-container">
+        {
+          list.length > 0 &&
+          list.map((todo) =>
+            <Todo
+              key={todo.id}
+              todoData={todo.todoData}
+              isfinished={todo.isFinished}
+              //onFinished Function
+              changeFinished={(isfinished) => { onFinished(isfinished, todo) }}
+              //onDelete function
+              onDelete={() => { onDelete(todo) }}
+              //On Editing function 
+              onEdit={(EditText) => { onEdit(todo, EditText) }}
+            />)
+        }
+      </div>
+
     </>
   );
 }

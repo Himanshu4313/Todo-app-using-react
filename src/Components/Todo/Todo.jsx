@@ -14,19 +14,19 @@ const Todo = ({ todoData, isfinished, changeFinished, onDelete, onEdit }) => {
                         onChange={(e) => {
                             setFinished((e.target.checked))
                             changeFinished((e.target.checked));
-                        }} 
+                        }}
                         id="check"
-                        />
-
-                        
-                <div id="todo-text-box">
-                    {(isEditing) ? <input type="text"
-                        value={newTodoList}
-                        onChange={(e) => SetNewTodoList((e.target.value))}
-                    /> : todoData}
+                    />
 
 
-                </div>
+                    <div id="todo-text-box">
+                        {(isEditing) ? <input type="text"
+                            value={newTodoList}
+                            onChange={(e) => SetNewTodoList((e.target.value))}
+                        /> : todoData}
+
+
+                    </div>
 
                 </div>
 
